@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/DCarr40/FlashCardsProj/issues"
   },
-  "homepage": "https://github.com/DCarr40/FlashCardsProj#readme"
+  "homepage": "https://github.com/DCarr40/FlashCardsProj#readme",
+  "dependencies": {
+    "config": "^3.3.6",
+    "mongoose": "^5.13.0",
+    "nodemon": "^2.0.8"
+  }
 }
