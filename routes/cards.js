@@ -33,10 +33,10 @@ router.post('/', async (req, res) => {
             return res.status(400).send(error);
 
         const card = new Card({
-            name: 'Stanley Classic Vacuum Bottle',
-            description: 'Our Stanley Classic Vacuum Bottle is made with superior insulation that keeps liquids (soup, coffee, tea) hot or cold drinks for up to 24hrs.',
-            category: 'Travel',
-            price: 19.82,
+            name: req.body.name,
+            description: req.body.description,
+            category: req.body.category,
+            price: req.body.price,
         })
         await card.save()
 
