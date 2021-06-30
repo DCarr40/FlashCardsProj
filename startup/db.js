@@ -5,9 +5,9 @@ function connectDB(){
     mongoose.connect(
         config.get('mongoURI'),
         { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('Connected to MongoDB...'))
+    .then(() => console.log('Connected to FlashCardDB...'))
     .catch((err) => {
-        console.log(`Could not connect to MongoDB. ERROR: ${err}`);
+        console.log(`Could not connect to FlashCardDB. ERROR: ${err}`);
         process.exit(1);
     });
 }

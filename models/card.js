@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
 
-const productSchema = new mongoose.Schema({
+const cardSchema = new mongoose.Schema({
 
     name: {type: String, required: true, minLength:2, maxLength:255},
     description: {type: String, required: true},
@@ -11,9 +11,9 @@ const productSchema = new mongoose.Schema({
 
 });
 
-const Product = mongoose.model('Product',productSchema);
+const Card = mongoose.model('Card',cardSchema);
 
-function validateProduct(product) {
+function validateCard(card) {
     const schema = Joi.object({
         name: Joi.string().min(2).max(50).required(),
         description: Joi.string().required(),
@@ -21,10 +21,10 @@ function validateProduct(product) {
         price: Joi.number().required(),
     });
 
-    return schema.validate(product);
+    return schema.validate(card);
 }
 
 
-exports.Product = Product;
-exports.validate = validateProduct;
-exports.productSchema = productSchema;
+exports.Card = Card;
+exports.validate = validateCard;
+exports.cardSchema = cardSchema;

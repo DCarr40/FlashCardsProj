@@ -1,25 +1,25 @@
-const {Product, validate } = require('../models/product');
+const {Card, validate} = require('../models/card');
 const express = require('express');
 const router = express.Router();
 
 //All end points and routes handlers go here
 router.get('/', async (req, res) => {
     try {
-    const products = await Product.find();
-    return res.send(products);
+    const cards = await Card.find();
+    return res.send(cards);
     } catch (ex) {
     return res.status(500).send(`Internal Server Error: ${ex}`);
     }
    });
 
-   router.get('/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
    
-    const product = await Product.findById(req.params.id);
-    if (!product)
-    return res.status(400).send(`The product with id "${req.params.id}" d
+    const card = await Card.findById(req.params.id);
+    if (!card)
+    return res.status(400).send(`The card with id "${req.params.id}" d
    oes not exist.`);
-    return res.send(product);
+    return res.send(card);
     } catch (ex) {
     return res.status(500).send(`Internal Server Error: ${ex}`);
     }
@@ -32,15 +32,15 @@ router.post('/', async (req, res) => {
         if (error)
             return res.status(400).send(error);
 
-        const product = new Product({
+        const card = new Card({
             name: 'Stanley Classic Vacuum Bottle',
             description: 'Our Stanley Classic Vacuum Bottle is made with superior insulation that keeps liquids (soup, coffee, tea) hot or cold drinks for up to 24hrs.',
             category: 'Travel',
             price: 19.82,
         })
-        await product.save()
+        await card.save()
 
-        return res.send(product);
+        return res.send(card);
 
     } catch(ex){
         return res.status(500).send(`Internal Server Error: ${ex}`);
@@ -51,7 +51,7 @@ router.put('/:id', async (req, res) => {
     try {
     const { error } = validate(req.body);
     if (error) return res.status(400).send(error);
-    const product = await Product.findByIdAndUpdate(
+    const card = await Card.findByIdAndUpdate(
     req.params.id,
     {
     name: req.body.name,
@@ -61,24 +61,24 @@ router.put('/:id', async (req, res) => {
     },
     { new: true }
     );
-    if (!product)
-    return res.status(400).send(`The product with id "${req.params.id}" d
+    if (!card)
+    return res.status(400).send(`The card with id "${req.params.id}" d
    oes not exist.`);
-    await product.save();
-    return res.send(product);
+    await card.save();
+    return res.send(card);
     } catch (ex) {
     return res.status(500).send(`Internal Server Error: ${ex}`);
     }
    });
 
-   router.delete('/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
    
-    const product = await Product.findByIdAndRemove(req.params.id);
-    if (!product)
-    return res.status(400).send(`The product with id "${req.params.id}" d
+    const card = await Card.findByIdAndRemove(req.params.id);
+    if (!card)
+    return res.status(400).send(`The card with id "${req.params.id}" d
    oes not exist.`);
-    return res.send(product);
+    return res.send(card);
     } catch (ex) {
     return res.status(500).send(`Internal Server Error: ${ex}`);
     }
