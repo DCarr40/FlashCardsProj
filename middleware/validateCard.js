@@ -11,5 +11,5 @@ function validateCard(card) {
     return schema.validate(card);
 }
 
-exports.validate = validateCard;
+exports.validateCard = validateCard;
 

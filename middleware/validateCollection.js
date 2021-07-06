@@ -7,7 +7,7 @@ function validateCollection(collection) {
         cards: Joi.string().required(),
     });
 
-    return schema.validate(card);
+    return schema.validate(collection);
 }
 
 exports.validateCollection = validateCollection;

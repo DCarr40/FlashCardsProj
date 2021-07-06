@@ -1,5 +1,7 @@
-const {Card, validate} = require('../models/card');
+const {Card} = require('../models/card');
 const {Collection} = require('../models/collections');
+const {validateCollection} = require('../middleware/validateCollection');
+const {validateCard} = require('../middleware/validateCard');
 const express = require('express');
 const router = express.Router();
 
@@ -42,7 +44,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     try{
 
-        const {error} = validate(req.body);
+        const {error} = validateCollection(req.body);
         if (error)
             return res.status(400).send(error);
 
@@ -110,17 +112,17 @@ router.put('/:id', async (req, res) => {
     }
    });
 
-// router.delete('/:id', async (req, res) => {
-//     try {
+router.delete('/:id', async (req, res) => {
+    try {
    
-//     const collection = await Collection.findByIdAndRemove(req.params.id);
-//     if (!card)
-//     return res.status(400).send(`The card with id "${req.params.id}" d
-//    oes not exist.`);
-//     return res.send(card);
-//     } catch (ex) {
-//     return res.status(500).send(`Internal Server Error: ${ex}`);
-//     }
-//    });
+    const collection = await Collection.findByIdAndRemove(req.params.id);
+    if (!card)
+    return res.status(400).send(`The card with id "${req.params.id}" d
+   oes not exist.`);
+    return res.send(card);
+    } catch (ex) {
+    return res.status(500).send(`Internal Server Error: ${ex}`);
+    }
+   });
 
 module.exports = router;

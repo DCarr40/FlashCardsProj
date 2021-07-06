@@ -9,8 +9,6 @@ const collectionSchema = new mongoose.Schema({
 
 const Collection = mongoose.model('Collection',collectionSchema);
 
-
-
 exports.Collection = Collection;
 exports.collectionSchema = collectionSchema;
 

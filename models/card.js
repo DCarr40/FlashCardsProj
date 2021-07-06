@@ -8,10 +8,5 @@ const cardSchema = new mongoose.Schema({
 
 const Card = mongoose.model('Card',cardSchema);
 
-
-
-
-
 exports.Card = Card;
-exports.validate = validateCard;
 exports.cardSchema = cardSchema;
